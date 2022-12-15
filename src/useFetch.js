@@ -18,6 +18,17 @@ const useFetch = (url) => {
             })
 
     }, [url])
-    return { data, loading, err };
+    const refetch = ()=> {
+        setLoading(true);
+        axios.get(url)
+            .then((response) => {
+                setData(response.data);
+            }).catch((err) => {
+                setErr(err)
+            }).finally(() => {
+                setLoading(false);
+            })
+    }
+    return { data, loading, err, refetch };
 }
 export default useFetch

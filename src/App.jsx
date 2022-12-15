@@ -3,7 +3,7 @@ import useFetch from './useFetch'
 import './App.css'
 
 function App() {
-  const { data, loading, error } = useFetch("https://www.boredapi.com/api/activity");
+  const { data, loading, error, refetch } = useFetch("https://www.boredapi.com/api/activity");
   console.log(data)
   if (loading) return <h1>Loading...</h1>
   if (error) return console.log(error)
@@ -16,6 +16,8 @@ function App() {
       <h3>
         Type of activity: {data?.type}
       </h3>
+
+      <button onClick={refetch}>Generate a new activity</button>
     </div>
   )
 }
